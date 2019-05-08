@@ -1,3 +1,3 @@
-import Tile from "./src/components/Tile"
+import TelestackUnnormalized from "./src/components/Telestack/TelestackUnnormalized";
 
-export default Tile
+export default TelestackUnnormalized
