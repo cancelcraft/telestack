@@ -48,7 +48,7 @@ export default class Telestack extends React.Component<Props, State> {
 
         // If targetIndex equals originalIndex, there will be a divide by zero error.
         if (targetIndex !== prevTargetIndex && (targetIndex >= 0 && targetIndex < listLength) && targetIndex !== originalIndex) {
-          prevTargetIndex = targetIndex\
+          prevTargetIndex = targetIndex
 
           this.increment(originalIndex, targetIndex)
         }
