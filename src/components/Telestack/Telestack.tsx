@@ -34,6 +34,36 @@ export default class Telestack extends React.Component<Props, State> {
    * This method performs the swapping of items.
    */
   private increment = (originalIndex: number, targetIndex: number) => {
+
+    if (originalIndex === targetIndex) {
+      throw new Error("Cannot divide by zero!")
+    }
+
+    // Test for divideByZero.
+    // Should always yield 1 or -1
+    const sign = (originalIndex - targetIndex) / Math.abs(originalIndex - targetIndex)
+
+    // Sign plus 1 yields 2 or 0; divide by 2 yields 1 or 0
+    // We use this value (1 or 0) to move the inclusivity/exclusivity of the identity window.
+    const offset = Math.trunc((sign + 1) / 2)
+
+    const newList: any[] = this.props.list.map((item, index) => {
+      // Invert the sign for some reason.
+      // Determine identity value within range.
+      const identity = determineIdentityForPositionBetweenBounds(index, targetIndex + offset, originalIndex + offset, sign)
+      const shiftedIndex = index + (-1 * sign) * identity
+
+      return this.props.list[shiftedIndex]
+    })
+
+      console.log(newList)
+
+    // The ID at the original index is always placed at the target index.
+    newList[targetIndex] = this.props.list[originalIndex]
+
+    this.setState({
+      internalList: newList
+    })
   }
 
   private onStartMove = (originalIndex: number) => (): MoveApi => {
