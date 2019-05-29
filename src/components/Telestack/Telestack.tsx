@@ -1,23 +1,24 @@
 import React from "react"
+import { determineIdentityForPositionBetweenBounds } from "../../computer";
 
-
-interface Children {
+export interface RenderCallback {
   (id: any, index: number, onStartMove: Function): any
 }
 
-interface Props {
+export interface Props {
   list: any[]
   isEditable: boolean
-  children:   Children
+  children:   RenderCallback
   syncList(newList: any[]): void
+}
+
+export interface MoveApi {
+  onMove(targetIndex: number): void
+  onRelease(): void
 }
 
 interface State {
   internalList: any[]
-}
-
-interface MoveApi {
-
 }
 
 export default class Telestack extends React.Component<Props, State> {
@@ -55,8 +56,6 @@ export default class Telestack extends React.Component<Props, State> {
 
       return this.props.list[shiftedIndex]
     })
-
-      console.log(newList)
 
     // The ID at the original index is always placed at the target index.
     newList[targetIndex] = this.props.list[originalIndex]
