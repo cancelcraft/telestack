@@ -1,3 +1,4 @@
 
-[![npm](https://img.shields.io/npm/v/@cancelcraft/telestack)]
+
+(https://img.shields.io/npm/v/telestack.svg)
 
