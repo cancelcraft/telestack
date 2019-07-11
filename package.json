@@ -1,7 +1,7 @@
 {
   "name": "telestack",
   "main": "index.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "test": "jest"
   },
@@ -49,5 +49,6 @@
     "setupFiles": [
       "./tests/setup.js"
     ]
-  }
+  },
+  "dependencies": {}
 }

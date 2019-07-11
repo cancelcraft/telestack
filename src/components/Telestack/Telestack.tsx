@@ -30,6 +30,12 @@ export default class Telestack extends React.Component<Props, State> {
     }
   }
 
+  componentWillReceiveProps({ list }: Props) {
+    this.setState({
+      internalList: list
+    })
+  }
+
   /**
    * As the gesture moves, if a new index is targeted, show the item at the original index moved to the target index.
    * This method performs the swapping of items.
