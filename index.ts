@@ -1,3 +1,4 @@
-import TelestackUnnormalized from "./src/components/Telestack/TelestackUnnormalized";
+import Telestack from "./src/components/Telestack/Telestack";
 
-export default TelestackUnnormalized
+
+export default Telestack
