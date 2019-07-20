@@ -100,9 +100,14 @@ export default class Telestack extends React.Component<Props, State> {
   }
 
   render() {
-    const [ first ] = this.props.list
+    let { list } = this.props
+    if (!list) {
+      list = []
+    }
 
-    return <React.Fragment>{
+    const [ first ] = list
+
+    return list.length === 0 ? null : <React.Fragment>{
       !this.props.isEditable
         ? this.props.children(first, 0, this.onStartMove(0))
         : this.state.internalList.map((id, index) => this.props.children(id, index, this.onStartMove(index)))

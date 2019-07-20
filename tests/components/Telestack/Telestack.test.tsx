@@ -3,10 +3,44 @@ import { shallow } from "enzyme"
 import Telestack from "../../../src/components/Telestack/Telestack"
 
 describe("Telestack", () => {
-  let syncListSpy: jasmine.Spy
-  let setStateSpy: jasmine.Spy
+  describe("when list is null", () => {
+    const testList: any[] = null as any
+    let syncListSpy: jasmine.Spy
+    let callbackSpy: jasmine.Spy
+
+    beforeEach(() => {
+      syncListSpy = jasmine.createSpy()
+      callbackSpy = jasmine.createSpy()
+
+      shallow(<Telestack list={testList} isEditable={false} syncList={syncListSpy}>{callbackSpy}</Telestack>)
+    })
+
+    it("should not call callback", () => {
+      expect(callbackSpy).not.toHaveBeenCalled()
+    })
+  })
+
+  describe("when list is empty", () => {
+    const testList = []
+    let syncListSpy: jasmine.Spy
+    let callbackSpy: jasmine.Spy
+
+    beforeEach(() => {
+      syncListSpy = jasmine.createSpy()
+      callbackSpy = jasmine.createSpy()
+
+      shallow(<Telestack list={testList} isEditable={false} syncList={syncListSpy}>{callbackSpy}</Telestack>)
+    })
+
+    it("should not call callback", () => {
+      expect(callbackSpy).not.toHaveBeenCalled()
+    })
+  })
 
   describe("when exploded", () => {
+    let syncListSpy: jasmine.Spy
+    let setStateSpy: jasmine.Spy
+
     let onStartMoveRef: any = null
     const testList: string[] = [ "first", "second", "third", "fourth" ]
     let liftedIndex = 1
